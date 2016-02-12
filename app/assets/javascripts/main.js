@@ -3,13 +3,13 @@ $(document).ready(function(){
     event.preventDefault();
     var options = {
       url: $(event.target).parent().attr('href'),
-      data: {:vote=>},
+      data: {value: 1},
       dataType: 'json',
       method: 'post'
     }
-    debugger
+    // debugger
     $.ajax(options).done(function(response){
-      debugger;
+      // debugger;
       // $('#post-' + response.post_id + " .vote-tally > p ").text(response.post_up_vote_count )
       console.log(response)
     }).fail(function(response){
