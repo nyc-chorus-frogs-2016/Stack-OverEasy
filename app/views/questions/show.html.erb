@@ -1,0 +1,25 @@
+<h1><%= @question.title %>
+
+<div class="question-data">
+  <h1><%= @question.title %>
+  <h3><%= @question.questioner_username %></h3>
+  <p><%= @question.content %><p>
+  <div class="question-comments">
+    <ul>
+      <%@question_comments.each do |question_comment| %>
+        <li><%= render partial: 'comment', locals: {comment: question_comment} %></li>
+      <% end %>
+    </ul>
+    <div><%=link_to 'add comment', new_comment_path%></div>
+  </div>
+</div>
+
+
+<div class="answer-data">
+  <h1>Answers</h1>
+    <%@answers.each do |answer| %>
+      <li><%= render partial: 'answer', locals: {answer: answer, answer_comments: @answer_comments} %></li>
+    <% end %>
+    <div><%=link_to 'add comment', new_comment_path%></div>
+  </div>
+</div>
