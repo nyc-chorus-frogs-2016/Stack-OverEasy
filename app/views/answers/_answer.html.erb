@@ -1,4 +1,4 @@
-<li class="answer-list-item"><%= answer.content %> - <%= link_to answer.responder, user_path(responder) %> <%= std_format_date answer.created_at %>
+<li class="answer-list-item"><%= answer.content %> - <%= link_to answer.username, user_path(answer.responder) %> <%= std_format_date answer.created_at %>
   <ul>
   <% answer_comments = answer.comments %>
   <% answer_comments.each do |answer_comment| %>

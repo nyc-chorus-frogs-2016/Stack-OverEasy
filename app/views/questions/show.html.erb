@@ -14,12 +14,15 @@
   </div>
 </div>
 
-
 <div class="answer-data">
   <h1>Answers</h1>
     <%@answers.each do |answer| %>
-      <li><%= render partial: 'answer', locals: {answer: answer, answer_comments: @answer_comments} %></li>
+      <li><%= render partial: 'answers/answer', locals: {answer: answer, answer_comments: @answer_comments} %></li>
     <% end %>
     <div><%=link_to 'add comment', new_comment_path%></div>
   </div>
+</div>
+
+<div id='answer-form'>
+  <%= render partial: 'answers/form', locals: {question: @question, answer: @answer} %>
 </div>

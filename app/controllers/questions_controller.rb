@@ -11,8 +11,7 @@ class QuestionsController < ApplicationController
     @question_comments = @question.comments
     @answers = @question.answers
 
-    # binding.pry
-    # puts "hello Dan"
+    @answer = Answer.new
   end
 
   def edit
