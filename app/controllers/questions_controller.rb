@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    @question = Question.new
   end
 
   def show
@@ -14,6 +15,20 @@ class QuestionsController < ApplicationController
     @answer = Answer.new
   end
 
+  def create
+    @question = Question.new(question_params)
+    if @question.save
+      redirect_to question_path(@question)
+    else
+       render :new
+    end
+  end
+
   def edit
   end
+
+  private
+    def question_params
+      params.require(:question).permit(:title, :content).merge(questioner: current_user)
+    end
 end

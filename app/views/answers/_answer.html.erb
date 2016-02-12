@@ -1,8 +1,9 @@
 <li class="answer-list-item"><%= answer.content %> - <%= link_to answer.username, user_path(answer.responder) %> <%= std_format_date answer.created_at %>
   <ul>
-  <% answer_comments = answer.comments %>
-  <% answer_comments.each do |answer_comment| %>
-    <%= render partial: 'comments/comment', locals: {comment: answer_comment} %>
-  <% end %>
+    <% answer_comments = answer.comments %>
+    <% answer_comments.each do |answer_comment| %>
+      <%= render partial: 'comments/comment', locals: {comment: answer_comment} %>
+    <% end %>
+  </ul>
 </li>
 
