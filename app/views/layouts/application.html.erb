@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>StackOvereasy</title>
+  <title>Stack Overeasy</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <header class='main-header'>
+    <nav class='container'>
+      <h1 class='name'><%= link_to 'Stack OverEasy', root_path%></h1>
+      <ul class='main-nav'>
+        <li><%= link_to 'Home', root_path %></li>
+        <% if current_user %>
+          <li>Welcome, <%= link_to current_user.username, user_path(current_user) %></li>
+          <li><%= link_to 'Logout', session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to 'Register', new_user_path%></li>
+          <li><%= link_to 'Login', new_session_path%></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+    <%= yield %>
+  <footer>
+  </footer>
 </body>
 </html>
