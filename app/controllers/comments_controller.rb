@@ -1,22 +1,32 @@
 class CommentsController < ApplicationController
 
   def new
+    if params[:answer_id]
+      @commentable = Answer.find(params[:answer_id])
+    else
+      @commentable = Question.find(params[:question_id])
+    end
     @comment = Comment.new
-    # @commentable =
   end
 
   def create
-    if params[:comentable_type] == "Question"
-      @commentable = Question.find(params[:commentable_id])
-    elsif params[:commentable_type]  == 'Answer'
-      @commentable = Answer.find(params[:commentable_id])
+    if params[:answer_id]
+      @commentable = Answer.find(params[:answer_id])
+    else
+      @commentable = Question.find(params[:question_id])
     end
 
     @comment = @commentable.comments.build(comment_params)
-      if @comment.save
-        redirect_to
+    if @comment.save
+      if params[:answer_id]
+        # redirect_to @comment.answer.question.id
+        redirect_to question_path(@comment.commentable.question_id)
       else
+        redirect_to question_path(@comment.commentable)
       end
+    else
+      render :new
+    end
   end
 
   private

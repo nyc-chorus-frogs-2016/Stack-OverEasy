@@ -5,10 +5,10 @@
   <div class="question-comments">
     <ul>
       <%@question_comments.each do |question_comment| %>
-        <li><%= render partial: 'comments/comment', locals: {comment: question_comment} %></li>
+        <%= render partial: 'comments/comment', locals: {comment: question_comment} %>
       <% end %>
     </ul>
-    <div><%=link_to 'comment on this question', new_comment_path%></div>
+    <div><%=link_to 'comment on this question', new_question_comment_path(@question)%></div>
   </div>
 </div>
 
@@ -17,7 +17,7 @@
     <ul>
       <%@answers.each do |answer| %>
         <%= render partial: 'answers/answer', locals: {answer: answer, answer_comments: @answer_comments} %>
-        <li><%=link_to 'comment on this answer', new_comment_path%></li>
+        <li><%=link_to 'comment on this answer', new_answer_comment_path(answer)%></li>
       <% end %>
     </ul>
   </div>
