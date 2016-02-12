@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :questions, except: [:destroy]
   resources :answers, except: [:show, :index, :destroy]
-  resources :comments, only: [:create] #add update/edit and destroy as a stretch?
+  resources :comments, only: [:new, :create] #add update/edit and destroy as a stretch?
   resources :votes, only: [:create]
 
   # The priority is based upon order of creation: first created -> highest priority.
