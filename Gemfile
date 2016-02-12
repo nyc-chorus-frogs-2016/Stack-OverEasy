@@ -25,6 +25,7 @@ gem 'bcrypt'
 # pry is the best
 gem 'pry'
 gem 'pry-nav'
+gem 'normalize-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
