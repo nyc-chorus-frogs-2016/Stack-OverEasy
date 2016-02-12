@@ -8,7 +8,11 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @question_comments
+    @question_comments = @question.comments
+    @answers = @question.answers
+
+    # binding.pry
+    # puts "hello Dan"
   end
 
   def edit

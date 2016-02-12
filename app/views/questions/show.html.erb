@@ -2,12 +2,12 @@
 
 <div class="question-data">
   <h1><%= @question.title %>
-  <h3><%= @question.questioner_username %></h3>
+  <h3><%= @question.questioner.username %></h3>
   <p><%= @question.content %><p>
   <div class="question-comments">
     <ul>
       <%@question_comments.each do |question_comment| %>
-        <li><%= render partial: 'comment', locals: {comment: question_comment} %></li>
+        <li><%= render partial: 'comments/comment', locals: {comment: question_comment} %></li>
       <% end %>
     </ul>
     <div><%=link_to 'add comment', new_comment_path%></div>
