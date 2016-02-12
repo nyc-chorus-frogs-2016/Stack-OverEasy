@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 20160211221711) do
   add_index "questions", ["questioner_id"], name: "index_questions_on_questioner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password_digest"
-    t.string   "email"
+    t.string   "username",        null: false
+    t.string   "password_digest", null: false
+    t.string   "email",           null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
