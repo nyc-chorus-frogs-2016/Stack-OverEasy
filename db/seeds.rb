@@ -8,9 +8,9 @@ q1 = Question.create(title:'What is the best cohort?', content:'jk, I know it is
 
 q2 = Question.create(title:'How to use the .sort enumerable?', content:'I am trying to sort a group of Sports Team array, here is my code', questioner: scott)
 
-a1 = Answer.create(content:'Chorus Frogs are the best imo', question_id: q1, responder: denna)
+a1 = Answer.create(content:'Chorus Frogs are the best imo', question_id: q1.id, responder: denna)
 
-a2 = Answer.create(content:'Crabs are the best imo', question_id: q1, responder: jan)
+a2 = Answer.create(content:'Crabs are the best imo', question_id: q1.id, responder: jan)
 
 c1 = Comment.create(content:'no they\'re not', commenter: scott, commentable: q1)
 
