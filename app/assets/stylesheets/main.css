@@ -1,4 +1,6 @@
 body {
-  background: url('http://www.incredibleegg.org/wp-content/uploads/basic-fried-eggs-3-930x550.jpg')
-
+  background-image: url('http://www.incredibleegg.org/wp-content/uploads/basic-fried-eggs-3-930x550.jpg');
+  background-repeat: no-repeat;
+  background-position: fixed;
+  background-size: 100%;
 }
