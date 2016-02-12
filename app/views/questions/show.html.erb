@@ -1,5 +1,3 @@
-<h1><%= @question.title %>
-
 <div class="question-data">
   <h1><%= @question.title %>
   <h3><%= @question.questioner.username %></h3>
@@ -10,16 +8,18 @@
         <li><%= render partial: 'comments/comment', locals: {comment: question_comment} %></li>
       <% end %>
     </ul>
-    <div><%=link_to 'add comment', new_comment_path%></div>
+    <div><%=link_to 'comment on this question', new_comment_path%></div>
   </div>
 </div>
 
 <div class="answer-data">
   <h1>Answers</h1>
-    <%@answers.each do |answer| %>
-      <li><%= render partial: 'answers/answer', locals: {answer: answer, answer_comments: @answer_comments} %></li>
-    <% end %>
-    <div><%=link_to 'add comment', new_comment_path%></div>
+    <ul>
+      <%@answers.each do |answer| %>
+        <%= render partial: 'answers/answer', locals: {answer: answer, answer_comments: @answer_comments} %>
+        <li><%=link_to 'comment on this answer', new_comment_path%></li>
+      <% end %>
+    </ul>
   </div>
 </div>
 
