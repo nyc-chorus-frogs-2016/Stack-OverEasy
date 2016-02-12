@@ -9,5 +9,6 @@ class QuestionsController < ApplicationController
   def show
   end
 
-  def
+  def edit
+  end
 end
