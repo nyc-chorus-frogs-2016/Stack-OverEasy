@@ -17,29 +17,38 @@ ActiveRecord::Schema.define(version: 20160211221711) do
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.integer  "question_id"
     t.string   "content"
+    t.integer  "question_id"
     t.integer  "responder_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["responder_id"], name: "index_answers_on_responder_id", using: :btree
+
   create_table "comments", force: :cascade do |t|
-    t.integer  "commentable_id"
-    t.integer  "commenter_id"
-    t.string   "commentable_type"
     t.string   "content"
+    t.integer  "commenter_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+  add_index "comments", ["commenter_id"], name: "index_comments_on_commenter_id", using: :btree
+
   create_table "questions", force: :cascade do |t|
+    t.string   "title",          null: false
+    t.string   "content",        null: false
+    t.integer  "best_answer_id"
     t.integer  "questioner_id"
-    t.string   "title"
-    t.string   "content"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
+
+  add_index "questions", ["questioner_id"], name: "index_questions_on_questioner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -50,12 +59,15 @@ ActiveRecord::Schema.define(version: 20160211221711) do
   end
 
   create_table "votes", force: :cascade do |t|
+    t.integer  "value"
     t.integer  "voter_id"
     t.integer  "votable_id"
     t.string   "votable_type"
-    t.integer  "value"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  add_index "votes", ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id", using: :btree
+  add_index "votes", ["voter_id"], name: "index_votes_on_voter_id", using: :btree
 
 end
