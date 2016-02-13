@@ -1,6 +1,8 @@
 body {
-  background-image: url('http://www.incredibleegg.org/wp-content/uploads/basic-fried-eggs-3-930x550.jpg');
-  background-repeat: no-repeat;
+/*  background-image: url('http://www.incredibleegg.org/wp-content/uploads/basic-fried-eggs-3-930x550.jpg');
+*/
+  background-image: url('http://www.solidbackgrounds.com/images/1920x1080/1920x1080-eggshell-solid-color-background.jpg');
+  /*background-repeat: no-repeat;*/
   background-position: fixed;
   background-size: 100%;
 }
