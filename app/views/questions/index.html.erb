@@ -1,20 +1,7 @@
 <h2>Welcome to Stack OverEasy</h2>
 <ul>
   <% @questions.each do |question| %>
-    <div>
-      <div class="question-up-vote">
-        <a href="/votes">
-          <img src="http://i.imgur.com/nFn8U6a.png" height="12" width="12">
-        </a>
-      </div>
-      <div class="question-down-vote">
-        <a href="#">
-          <img src="http://www.clker.com/cliparts/d/A/H/R/z/3/red-down-arrow-hi.png" height="12" width="12">
-        </a>
-      </div>
-
-      </div>
-      <div class='question-vote-count'><%=question.votes.length%> votes</div>
+      <div class='question-vote-count'><%=question.vote_count%> votes</div>
 
       <div><%=question.answers.length%> answers</div>
       <li><%= link_to question.title, question_path(question) %> By: <%=question.questioner.username%> at <%=question.created_at%></li>
