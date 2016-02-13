@@ -13,4 +13,8 @@ class Answer < ActiveRecord::Base
     self.votes.sum(:value)
   end
 
+  def recent_comments
+    self.comments.order('created_at ASC')
+  end
+
 end
