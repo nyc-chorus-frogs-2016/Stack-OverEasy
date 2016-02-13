@@ -8,8 +8,16 @@ class Question < ActiveRecord::Base
     Answer.find_by(id: self.best_answer_id)
   end
 
+  def recent_questions
+    self.order
+  end
 
   def vote_count
     self.votes.sum(:value)
   end
+
+  def recent_comments
+    self.comments.order('created_at ASC')
+  end
+
 end

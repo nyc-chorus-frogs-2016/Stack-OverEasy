@@ -1,6 +1,16 @@
 class QuestionsController < ApplicationController
   def index
+    if params[]
     @questions = Question.all
+  end
+
+  def latest
+  end
+
+  def trending
+  end
+
+  def highestvoted
   end
 
   def new
@@ -9,8 +19,9 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @question_comments = @question.comments
+    @question_comments = @question.recent_comments
     @answers = @question.answers
+
 
     @answer = Answer.new
   end
