@@ -5,8 +5,20 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to  question_path(@answer.question_id)
     else
-       # render :'questions/show'
-       render @answer.question_id
+      render @answer.question_id
+    end
+  end
+
+  def edit
+    @answer = Answer.find(params[:id])
+  end
+
+  def update
+    @answer = Answer.find(params[:id])
+    if @answer.update(answer_params)
+      redirect_to question_path(@answer.question_id)
+    else
+      render :edit
     end
   end
 

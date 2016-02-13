@@ -7,6 +7,9 @@
     <%= link_to image_tag("http://www.clker.com/cliparts/d/A/H/R/z/3/red-down-arrow-hi.png", class: 'down-arrow'), answer_votes_path(answer) %>
   </div>
   <li class="answer-list-item"><%= answer.content %> - <%= link_to answer.username, user_path(answer.responder) %> <%= std_format_date answer.created_at %>
+    <% if answer.editable_by?(current_user) %>
+      <%= link_to 'edit', edit_answer_path(answer) %>
+    <% end %>
     <ul>
       <% answer_comments = answer.recent_comments %>
       <% answer_comments.each do |answer_comment| %>
