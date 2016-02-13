@@ -5,11 +5,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show]
 
   resources :questions, except: [:destroy] do
-    collection do
-      get 'latest'
-      get 'trending'
-      get 'highestvoted'
-    end
     resources :comments, only: [:new, :create]
     resources :votes, only: [:create]
   end

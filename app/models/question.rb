@@ -4,13 +4,15 @@ class Question < ActiveRecord::Base
   has_many :answers
   belongs_to :questioner, class_name: 'User'
 
+
+  def self.trending
+    order()
+  end
+
   def best_answer
     Answer.find_by(id: self.best_answer_id)
   end
 
-  def recent_questions
-    self.order
-  end
 
   def vote_count
     self.votes.sum(:value)
@@ -18,6 +20,19 @@ class Question < ActiveRecord::Base
 
   def recent_comments
     self.comments.order('created_at ASC')
+  end
+
+  def self.by_points
+    join_clause = 'left outer join votes on votes.votable_id = questions.id'
+    joins(join_clause).group(:id).order('sum(votes.value) desc nulls last')
+  end
+
+  def self.recent_questions
+    order('created_at DESC')
+  end
+
+  def self.by_trending
+    order('updated_at DESC')
   end
 
 end

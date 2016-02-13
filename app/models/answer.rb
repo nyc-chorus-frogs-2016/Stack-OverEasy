@@ -1,7 +1,7 @@
 class Answer < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :votes, as: :votable
-  belongs_to :question
+  belongs_to :question, touch: true
   belongs_to :responder, class_name: 'User'
   delegate :username, to: :responder, allow_nil: true
 

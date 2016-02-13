@@ -1,16 +1,14 @@
 class QuestionsController < ApplicationController
   def index
-    if params[]
-    @questions = Question.all
-  end
-
-  def latest
-  end
-
-  def trending
-  end
-
-  def highestvoted
+    if  params[:order] == "highest"
+      @questions = Question.by_points
+    elsif params[:order] == "recent"
+      @questions = Question.recent_questions
+    elsif params[:order] == "trending"
+      @questions = Question.by_trending
+    else
+      @questions = Question.all
+    end
   end
 
   def new
@@ -43,3 +41,6 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(:title, :content).merge(questioner: current_user)
     end
 end
+# User.joins(:received_comments).group(:id).order('sum(comments.like_value) desc')
+
+# joins(:answers).group(:id).order('sum(answers.votes.value) desc')
