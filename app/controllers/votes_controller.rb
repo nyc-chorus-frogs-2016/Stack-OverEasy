@@ -7,15 +7,25 @@ class VotesController < ApplicationController
       @votable = Question.find(params[:question_id])
     end
 
-    @vote = @votable.votes.build(vote_params)
+    @vote = @votable.votes.build(value: params[:value], voter: current_user)
+        # binding.pry
     if @vote.save
-      if params[:answer_id]
-        redirect_to question_path(@vote.votable.question_id)
+      if request.xhr?
+        # binding.pry
+        render :json => {votable_id: @votable.id, votable_vote_count: @votable.vote_count}
       else
-        redirect_to question_path(@vote.votable)
+        if params[:answer_id]
+          redirect_to question_path(@vote.votable.question_id)
+        else
+          redirect_to question_path(@vote.votable)
+        end
       end
     else
-      render :new
+      if params[:answer_id]
+         render question_path(@vote.votable.question_id)
+      else
+         render question_path(@vote.votable)
+      end
     end
   end
 
@@ -31,13 +41,13 @@ class VotesController < ApplicationController
   #   else
   #     return [507, "Your upvote on this post could not be saved, we're sorry"]
   #   end
+# end
 
-  end
 
 
   private
-    def comment_params
-      params.require(:comment).permit(:val).merge(voter: current_user)
+    def vote_params
+      params.require(:vote).permit(:value).merge(voter: current_user)
     end
 
 end

@@ -6,3 +6,8 @@ body {
   background-position: fixed;
   background-size: 100%;
 }
+
+.up-arrow, .down-arrow {
+  height: 12px;
+  width: 12px;
+}

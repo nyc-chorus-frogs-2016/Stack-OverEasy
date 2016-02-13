@@ -9,5 +9,8 @@ class Answer < ActiveRecord::Base
     self.comments
   end
 
+  def vote_count
+    self.votes.sum(:value)
+  end
 
 end

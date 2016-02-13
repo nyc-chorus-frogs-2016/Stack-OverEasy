@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
+
   def create
     if params[:answer_id]
       @commentable = Answer.find(params[:answer_id])

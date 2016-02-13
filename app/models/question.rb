@@ -7,4 +7,9 @@ class Question < ActiveRecord::Base
   def best_answer
     Answer.find_by(id: self.best_answer_id)
   end
+
+
+  def vote_count
+    self.votes.sum(:value)
+  end
 end
