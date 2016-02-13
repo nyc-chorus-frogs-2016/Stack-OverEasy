@@ -19,8 +19,6 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question_comments = @question.recent_comments
     @answers = @question.answers
-
-
     @answer = Answer.new
   end
 
@@ -34,6 +32,16 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @question = Question.find(params[:id])
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    if @question.update(question_params)
+      redirect_to question_path(@question)
+    else
+      render :edit
+    end
   end
 
   private
@@ -41,6 +49,4 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(:title, :content).merge(questioner: current_user)
     end
 end
-# User.joins(:received_comments).group(:id).order('sum(comments.like_value) desc')
 
-# joins(:answers).group(:id).order('sum(answers.votes.value) desc')

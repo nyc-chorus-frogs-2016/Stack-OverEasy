@@ -3,14 +3,14 @@
 <h3>Here are your questions:</h3>
 <% @questions.each do |question| %>
 <div>
-  <%= link_to question.title, question_path %>
+  <%= link_to question.title, question_path(question) %>
 </div>
 <%end%>
 
 <h3>Here are questions you have answered:</h3>
 <% @answers.each do |answer| %>
 <div>
-  <%= link_to answer.question.title, question_path %>
+  <%= link_to answer.question.title, question_path(answer.question) %>
 </div>
 <%end%>
 
