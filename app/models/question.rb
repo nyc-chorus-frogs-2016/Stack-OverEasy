@@ -4,15 +4,9 @@ class Question < ActiveRecord::Base
   has_many :answers
   belongs_to :questioner, class_name: 'User'
 
-
-  def self.trending
-    order()
-  end
-
   def best_answer
     Answer.find_by(id: self.best_answer_id)
   end
-
 
   def vote_count
     self.votes.sum(:value)

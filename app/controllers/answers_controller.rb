@@ -5,7 +5,6 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to  question_path(@answer.question_id)
     else
-       # render :'questions/show'
        render @answer.question_id
     end
   end
@@ -18,3 +17,4 @@ class AnswersController < ApplicationController
     end
 end
 
+  # Sort: <%= link_to 'Highest-Voted Answer', questions_path{@question, :order => 'highest'} %> |
