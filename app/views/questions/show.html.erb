@@ -1,23 +1,26 @@
 <div class="question-data">
   <div id="question-<%= @question.id %>" class='question'>
-    <div class="question-up-vote">
-      <%= link_to image_tag("http://i.imgur.com/nFn8U6a.png", class: 'up-arrow'), question_votes_path(@question) %>
+    <div class="voting-data">
+      <div class="question-up-vote">
+        <%= link_to image_tag("http://i.imgur.com/nFn8U6a.png", class: 'up-arrow'), question_votes_path(@question) %>
+      </div>
+      <div class='question-vote-count'><%=@question.vote_count%></div>
+      <div class="question-down-vote">
+        <%= link_to image_tag("http://www.clker.com/cliparts/d/A/H/R/z/3/red-down-arrow-hi.png", class: 'down-arrow'), question_votes_path(@question) %>
+      </div>
     </div>
-    <div class='question-vote-count'><%=@question.vote_count%></div>
-    <div class="question-down-vote">
-      <%= link_to image_tag("http://www.clker.com/cliparts/d/A/H/R/z/3/red-down-arrow-hi.png", class: 'down-arrow'), question_votes_path(@question) %>
-    </div>
-    <h1><%= @question.title %>
-    <h3><%= @question.questioner.username %></h3>
-    <p><%= @question.content %><p>
+    <h1><%= @question.title %></h1>
+    <h3 class="questioner-info">question posted by:<%= link_to @question.questioner.username, user_path(@question.questioner) %>, on <%= std_format_date @question.created_at %></h3>
+    <p class="question-content">QUESTION:<%= @question.content %></p>
   </div>
   <div class="question-comments">
-    <ul>
+    <p class="question-comment-header">comments on this question:</p>
+    <ul class="comment-list">
       <%@question_comments.each do |question_comment| %>
         <%= render partial: 'comments/comment', locals: {comment: question_comment} %>
       <% end %>
     </ul>
-    <div><%=link_to 'comment on this question', new_question_comment_path(@question)%></div>
+    <div class="q-comment-here"><%=link_to 'comment on this question', new_question_comment_path(@question)%></div>
     <% if @question.editable_by?(current_user) %>
       <%= link_to 'edit', edit_question_path(@question) %>
     <% end %>
@@ -32,7 +35,7 @@
     <ul>
       <%@answers.each do |answer| %>
         <%= render partial: 'answers/answer', locals: {answer: answer, answer_comments: @answer_comments} %>
-        <li><%=link_to 'comment on this answer', new_answer_comment_path(answer)%></li>
+        <li class="comment-here"><%=link_to 'comment on this answer', new_answer_comment_path(answer)%></li>
       <% end %>
     </ul>
   </div>

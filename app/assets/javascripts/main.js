@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     $.ajax(options).done(function(response){
       // debugger
-      $('#question-' + response.votable_id + "> .question-vote-count ").text(response.votable_vote_count )
+      $('#question-' + response.votable_id + "> .voting-data " + "> .question-vote-count ").text(response.votable_vote_count )
       console.log(response)
     }).fail(function(response){
       console.log('sad path')
@@ -34,7 +34,8 @@ $(document).ready(function(){
 
     $.ajax(options).done(function(response){
       // debugger
-      $('#question-' + response.votable_id + ' > .question-vote-count').text(response.votable_vote_count )
+      $('#question-' + response.votable_id + "> .voting-data " + "> .question-vote-count ").text(response.votable_vote_count )
+      // $('#question-' + response.votable_id + ' > .question-vote-count').text(response.votable_vote_count )
       console.log(response)
     }).fail(function(response){
       console.log('sad path')
@@ -53,7 +54,7 @@ $(document).ready(function(){
     }
 
     $.ajax(options).done(function(response){
-      $('#answer-' + response.votable_id + " > .answer-vote-count").text(response.votable_vote_count )
+      $('#answer-' + response.votable_id + "> .voting-data " + " > .answer-vote-count").text(response.votable_vote_count )
       console.log(response)
     }).fail(function(response){
       console.log('sad path')
@@ -73,7 +74,7 @@ $(document).ready(function(){
     }
 
     $.ajax(options).done(function(response){
-      $('#answer-' + response.votable_id + "> .answer-vote-count").text(response.votable_vote_count )
+      $('#answer-' + response.votable_id + "> .voting-data " + "> .answer-vote-count").text(response.votable_vote_count )
       console.log(response)
     }).fail(function(response){
       console.log('sad path')
