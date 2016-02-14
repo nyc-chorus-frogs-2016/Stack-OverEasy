@@ -21,7 +21,7 @@ class Question < ActiveRecord::Base
   end
 
   def self.by_points
-    joins(:votes).group(:id).order('sum (votes.value) desc')
+    Question.joins(:votes).group(:id).order('sum (votes.value) desc')
   end
 
   def self.recent_questions
