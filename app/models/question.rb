@@ -16,6 +16,14 @@ class Question < ActiveRecord::Base
     self.votes.sum(:value)
   end
 
+  def voted
+    self.votes.pluck(:voter_id)
+    # .include? {|voter| voter == current_user.id}
+    # self.votes.pluck(:voter)
+    # .include? {|voter| voter == current_user}
+  end
+
+
   def recent_comments
     self.comments.order('created_at ASC')
   end
