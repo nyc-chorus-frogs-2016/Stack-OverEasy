@@ -20,10 +20,8 @@ class Question < ActiveRecord::Base
     self.comments.order('created_at ASC')
   end
 
-  # something about this sum isnt completely right just yet.???
   def self.by_points
-    join_clause = 'left outer join votes on votes.votable_id = questions.id'
-    joins(join_clause).group(:id).order('sum(votes.value) desc nulls last')
+    Question.joins(:votes).group(:id).order('sum (votes.value) desc')
   end
 
   def self.recent_questions
