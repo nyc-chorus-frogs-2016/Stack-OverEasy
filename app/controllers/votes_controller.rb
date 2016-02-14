@@ -8,10 +8,8 @@ class VotesController < ApplicationController
     end
 
     @vote = @votable.votes.build(value: params[:value], voter: current_user)
-        # binding.pry
     if @vote.save
       if request.xhr?
-        # binding.pry
         render :json => {votable_id: @votable.id, votable_vote_count: @votable.vote_count}
       else
         if params[:answer_id]
@@ -28,22 +26,6 @@ class VotesController < ApplicationController
       end
     end
   end
-
-  # def create
-  #   vote = Vote.new(vote_params)
-  #   binding.pry
-  #   if vote.save
-  #     if request.xhr?
-  #       {vote}.to_json
-  #     else
-  #       redirect_to question_path
-  #     end
-  #   else
-  #     return [507, "Your upvote on this post could not be saved, we're sorry"]
-  #   end
-# end
-
-
 
   private
     def vote_params

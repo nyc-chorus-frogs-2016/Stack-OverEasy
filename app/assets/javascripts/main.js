@@ -33,9 +33,7 @@ $(document).ready(function(){
     }
 
     $.ajax(options).done(function(response){
-      // debugger
       $('#question-' + response.votable_id + "> .voting-data " + "> .question-vote-count ").text(response.votable_vote_count )
-      // $('#question-' + response.votable_id + ' > .question-vote-count').text(response.votable_vote_count )
       console.log(response)
     }).fail(function(response){
       console.log('sad path')
@@ -80,28 +78,5 @@ $(document).ready(function(){
       console.log('sad path')
     })
   });
-  // $('.COMMENT').on('click',function(event){
-  //   event.preventDefault();
-  //   var options = {
-  //     url: $(event.target).attr('action')
-  //   }
-  //   $.ajax(options).done(function(response){
-  //     console.log(response)
-  //   }).fail(function(response){
-  //     console.log(response)
-  //   })
-  // });
-
-  //   $('.BESTANSWER').on('click',function(event){
-  //   event.preventDefault();
-  //   var options = {
-  //     url: $(event.target).attr('action')
-  //   }
-  //   $.ajax(options).done(function(response){
-  //     console.log(response)
-  //   }).fail(function(response){
-  //     console.log(response)
-  //   })
-  // });
 
 })
