@@ -18,18 +18,18 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @question_comments = @question.recent_comments
+    @answers = @question.answers
 
     if  params[:aorder] == "highest"
-      @answers = Answer.by_points
+      @answers = @answers.by_points
     elsif params[:aorder] == "recent"
-      @answers = Answer.recent_answers
+      @answers = @answers.recent_answers
     elsif params[:aorder] == "trending"
-      @answers = Answer.by_trending
+      @answers = @answers.by_trending
     else
-      @answers = Answer.all
+      @answers = @question.answers
     end
 
-    @answers = @question.answers
     @answer = Answer.new
   end
 
