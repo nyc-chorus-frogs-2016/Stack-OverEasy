@@ -20,7 +20,6 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build(comment_params)
     if @comment.save
       if params[:answer_id]
-        # redirect_to @comment.answer.question.id
         redirect_to question_path(@comment.commentable.question_id)
       else
         redirect_to question_path(@comment.commentable)
