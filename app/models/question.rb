@@ -4,6 +4,10 @@ class Question < ActiveRecord::Base
   has_many :answers
   belongs_to :questioner, class_name: 'User'
 
+  def editable_by? user
+    questioner == user
+  end
+
   def best_answer
     Answer.find_by(id: self.best_answer_id)
   end

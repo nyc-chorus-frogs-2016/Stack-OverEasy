@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:new, :create]
     resources :votes, only: [:create]
   end
+
+  get '/questions/:question_id/bestanswer/:id', :to => 'questions#best'
    #add update/edit and destroy as a stretch?
 
 

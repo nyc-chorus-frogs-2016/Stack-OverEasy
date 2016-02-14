@@ -5,6 +5,10 @@ class Answer < ActiveRecord::Base
   belongs_to :responder, class_name: 'User'
   delegate :username, to: :responder, allow_nil: true
 
+  def editable_by? user
+    responder == user
+  end
+
   def my_comments
     self.comments
   end

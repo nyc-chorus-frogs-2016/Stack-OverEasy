@@ -18,9 +18,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @question_comments = @question.recent_comments
-    # @answers = @question.answers
 
-    # ANSWER sorting logic below:
     if  params[:aorder] == "highest"
       @answers = Answer.by_points
     elsif params[:aorder] == "recent"
@@ -30,6 +28,8 @@ class QuestionsController < ApplicationController
     else
       @answers = Answer.all
     end
+
+    @answers = @question.answers
     @answer = Answer.new
   end
 
@@ -43,6 +43,24 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @question = Question.find(params[:id])
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    if @question.update(question_params)
+      redirect_to question_path(@question)
+    else
+      render :edit
+    end
+  end
+
+  def best
+    @question = Question.find(params[:question_id])
+    @answer = Answer.find(params[:id])
+    @question.best_answer_id = @answer.id
+    @question.save
+    redirect_to question_path(@question)
   end
 
   private
@@ -50,8 +68,4 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(:title, :content).merge(questioner: current_user)
     end
 end
-# User.joins(:received_comments).group(:id).order('sum(comments.like_value) desc')
 
-# joins(:answers).group(:id).order('sum(answers.votes.value) desc')
-
-  # Sort: <%= link_to 'Highest-Voted Answer', questions_path((@question){aorder: :highest}) %> |
