@@ -22,7 +22,7 @@ class Answer < ActiveRecord::Base
   end
 
   def self.by_points
-    Answer.joins(:votes).group(:id).order('sum (votes.value) desc')
+    joins(:votes).group(:id).order('sum (votes.value) desc')
   end
 
   def self.recent_answers
