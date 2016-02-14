@@ -4,10 +4,10 @@ Sort: <%= link_to 'Highest-Voted', questions_path({order: :highest}) %> |
 <%= link_to 'Trending', questions_path({order: :trending}) %>
 <ul>
   <% @questions.each do |question| %>
-      <div class='question-vote-count'><%=question.vote_count%> votes</div>
-
-      <div><%=question.answers.length%> answers</div>
       <li><%= link_to question.title, question_path(question) %> By: <%=question.questioner.username%> at <%=question.created_at%></li>
+      <div class='question-vote-count'><%=question.vote_count%> points</div>
+      <div><%=question.answers.length%> answers</div>
+      <hr>
   <% end %>
     </div>
 </ul>
