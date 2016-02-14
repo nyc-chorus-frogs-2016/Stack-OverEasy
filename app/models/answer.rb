@@ -21,4 +21,17 @@ class Answer < ActiveRecord::Base
     self.comments.order('created_at ASC')
   end
 
+  def self.by_points
+    join_clause = 'left outer join votes on votes.votable_id = answers.id'
+    joins(join_clause).group(:id).order('sum(votes.value) desc nulls last')
+  end
+
+  def self.recent_answers
+    order('created_at DESC')
+  end
+
+  def self.by_trending
+    order('updated_at DESC')
+  end
+
 end

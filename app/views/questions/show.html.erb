@@ -26,6 +26,9 @@
 
 <div class="answer-data">
   <h1>Answers</h1>
+  Sort: <%= link_to 'Highest-Voted Answers', question_path(@question, {aorder: :highest}) %> |\
+  <%= link_to 'Most Recent Answers', question_path(@question, {aorder: :recent}) %> |
+  <%= link_to 'Trending Answers', question_path(@question, {aorder: :trending}) %>
     <ul>
       <%@answers.each do |answer| %>
         <%= render partial: 'answers/answer', locals: {answer: answer, answer_comments: @answer_comments} %>

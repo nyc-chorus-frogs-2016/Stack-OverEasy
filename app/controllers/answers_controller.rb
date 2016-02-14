@@ -22,11 +22,9 @@ class AnswersController < ApplicationController
     end
   end
 
-
   private
 
     def answer_params
       params.require(:answer).permit(:content, :question_id).merge(responder: current_user)
     end
 end
-
