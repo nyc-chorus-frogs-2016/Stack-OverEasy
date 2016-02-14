@@ -1,0 +1,10 @@
+<%= form_for answer do |f| %>
+  <div>
+    <%= hidden_field_tag 'answer[question_id]', answer.question.id %>
+    <%= f.label :content, 'Answer' %>
+    <%= f.text_area :content %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

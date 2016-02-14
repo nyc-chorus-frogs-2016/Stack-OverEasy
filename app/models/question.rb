@@ -5,6 +5,10 @@ class Question < ActiveRecord::Base
   belongs_to :questioner, class_name: 'User'
 
 
+  def editable_by? user
+    questioner == user
+  end
+
   def self.trending
     order()
   end
