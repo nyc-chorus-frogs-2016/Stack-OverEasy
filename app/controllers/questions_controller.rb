@@ -36,6 +36,14 @@ class QuestionsController < ApplicationController
   def edit
   end
 
+  def best
+    @question = Question.find(params[:question_id])
+    @answer = Answer.find(params[:id])
+    @question.best_answer_id = @answer.id
+    @question.save
+    redirect_to question_path(@question)
+  end
+
   private
     def question_params
       params.require(:question).permit(:title, :content).merge(questioner: current_user)
