@@ -22,8 +22,7 @@ class Answer < ActiveRecord::Base
   end
 
   def self.by_points
-    join_clause = 'left outer join votes on votes.votable_id = answers.id'
-    joins(join_clause).group(:id).order('sum(votes.value) desc nulls last')
+    Answer.joins(:votes).group(:id).order('sum (votes.value) desc')
   end
 
   def self.recent_answers
