@@ -6,6 +6,20 @@
   <div class="answer-down-vote">
     <%= link_to image_tag("http://www.clker.com/cliparts/d/A/H/R/z/3/red-down-arrow-hi.png", class: 'down-arrow'), answer_votes_path(answer) %>
   </div>
+
+  <% if answer.id == @question.best_answer_id %>
+  <img src="http://mothernaturesdiapers.com/wp-content/uploads/2013/03/Green-Checkmark-small.png">
+  <% end %>
+
+  <% if current_user == @question.questioner %>
+    <% if answer.id == @question.best_answer_id %>
+    <% else %>
+    <div class='select-best-answer'>
+    <a href="/questions/<%=@question.id%>/bestanswer/<%=answer.id%>"><img src="http://www2.psd100.com/ppp/2013/11/2701/Gray-checkmark-1127220855.png"></a>
+  </div>
+    <% end %>
+  <%end%>
+
   <li class="answer-list-item"><%= answer.content %> - <%= link_to answer.username, user_path(answer.responder) %> <%= std_format_date answer.created_at %>
     <ul>
       <% answer_comments = answer.recent_comments %>
