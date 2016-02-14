@@ -10,17 +10,15 @@
   </div>
 
   <% if answer.id == @question.best_answer_id %>
-  <img src="http://mothernaturesdiapers.com/wp-content/uploads/2013/03/Green-Checkmark-small.png">
+    <img src="http://mothernaturesdiapers.com/wp-content/uploads/2013/03/Green-Checkmark-small.png">
+  <% elsif current_user == @question.questioner && answer.id != @question.best_answer_id %>
+    <div class='select-best-answer'>
+      <a href="/questions/<%=@question.id%>/bestanswer/<%=answer.id%>"><img src="http://www2.psd100.com/ppp/2013/11/2701/Gray-checkmark-1127220855.png"></a>
+    </div>
+  <% else %>
+    <img src="http://www2.psd100.com/ppp/2013/11/2701/Gray-checkmark-1127220855.png">
   <% end %>
 
-  <% if current_user == @question.questioner %>
-    <% if answer.id == @question.best_answer_id %>
-    <% else %>
-    <div class='select-best-answer'>
-    <a href="/questions/<%=@question.id%>/bestanswer/<%=answer.id%>"><img src="http://www2.psd100.com/ppp/2013/11/2701/Gray-checkmark-1127220855.png"></a>
-  </div>
-    <% end %>
-  <%end%>
 
   <li class="answer-list-item"><p class="answer-header">Answer by:<%= link_to answer.username, user_path(answer.responder) %> <%= std_format_date answer.created_at %></p><%= answer.content %>
     <% if answer.editable_by?(current_user) %>
