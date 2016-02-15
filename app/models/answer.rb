@@ -17,6 +17,10 @@ class Answer < ActiveRecord::Base
     self.votes.sum(:value)
   end
 
+  def voted
+    self.votes.pluck(:voter_id)
+  end
+
   def recent_comments
     self.comments.order('created_at ASC')
   end

@@ -1,12 +1,10 @@
 <div id="answer-<%= answer.id %>" class='answer'>
   <div class="voting-data">
-    <div class="answer-up-vote">
-      <%= link_to image_tag("http://i.imgur.com/nFn8U6a.png", class: 'up-arrow'), answer_votes_path(answer) %>
-    </div>
-    <div class='answer-vote-count'><%=answer.vote_count%></div>
-    <div class="answer-down-vote">
-      <%= link_to image_tag("http://www.clker.com/cliparts/d/A/H/R/z/3/red-down-arrow-hi.png", class: 'down-arrow'), answer_votes_path(answer) %>
-    </div>
+    <% if answer.voted.include?(current_user.id)%>
+      <%= render partial: 'answers/voted', locals: {answer: answer}%>
+    <% else %>
+     <%= render partial: 'answers/unvoted', locals: {answer: answer}%>
+    <% end %>
   </div>
 
   <% if answer.id == question.best_answer_id %>

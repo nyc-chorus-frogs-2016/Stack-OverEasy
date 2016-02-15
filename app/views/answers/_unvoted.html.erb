@@ -1,0 +1,7 @@
+<div class="answer-up-vote">
+  <%= link_to image_tag("http://i.imgur.com/nFn8U6a.png", class: 'up-arrow'), answer_votes_path(answer) %>
+</div>
+<div class='answer-vote-count'><%=answer.vote_count%></div>
+<div class="answer-down-vote">
+  <%= link_to image_tag("http://www.clker.com/cliparts/d/A/H/R/z/3/red-down-arrow-hi.png", class: 'down-arrow'), answer_votes_path(answer) %>
+</div>
