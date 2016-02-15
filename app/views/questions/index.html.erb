@@ -1,0 +1,14 @@
+<h2>Welcome to Stack OverEasy</h2>
+Sort: <%= link_to 'Highest-Voted', questions_path({order: :highest}) %> |
+<%= link_to 'Recent', questions_path({order: :recent}) %> |
+<%= link_to 'Trending', questions_path({order: :trending}) %>
+<ul>
+  <% @questions.each do |question| %>
+      <li><%= link_to question.title, question_path(question) %> By: <%=question.questioner.username%> at <%=question.created_at%></li>
+      <div class='question-vote-count'><%=question.vote_count%> points</div>
+      <div><%=question.answers.length%> answers</div>
+      <hr>
+  <% end %>
+    </div>
+</ul>
+

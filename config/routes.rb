@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+
+  root 'questions#index'
+  resource :session, only: [:new, :create, :destroy]
+  resources :users, only: [:new, :create, :show]
+
+  resources :questions, except: [:destroy] do
+    resources :comments, only: [:new, :create]
+    resources :votes, only: [:create]
+  end
+
+  resources :answers, except: [:show, :index, :destroy] do
+    resources :comments, only: [:new, :create]
+    resources :votes, only: [:create]
+  end
+
+  get '/questions/:question_id/bestanswer/:id', :to => 'questions#best'
+   #add update/edit and destroy as a stretch?
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
