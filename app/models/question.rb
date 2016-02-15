@@ -18,9 +18,6 @@ class Question < ActiveRecord::Base
 
   def voted
     self.votes.pluck(:voter_id)
-    # .include? {|voter| voter == current_user.id}
-    # self.votes.pluck(:voter)
-    # .include? {|voter| voter == current_user}
   end
 
 

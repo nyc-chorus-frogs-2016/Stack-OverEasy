@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @voters = @question.voted
+    @question_voters = @question.voted
     @question_comments = @question.recent_comments
     @answers = @question.answers
 

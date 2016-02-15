@@ -79,6 +79,7 @@ nav {
   color: #000000;
   /*color: #828282;*/
   margin-left: 30px;
+  margin-bottom: 20px;
 }
 
 .question-data {
@@ -113,12 +114,15 @@ ul .comment-list {
 
 .comment-list-item {
   padding-left: 12px;
+  margin-bottom: 10px;
 }
 
 h1 {
   color: #000;
 }
-
+.comment-here {
+  margin-bottom: 40px;
+}
 .comment-here a{
   padding-left: 30px;
 }

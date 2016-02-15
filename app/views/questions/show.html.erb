@@ -1,22 +1,10 @@
 <div class="question-data">
   <div id="question-<%= @question.id %>" class='question'>
     <div class="voting-data">
-      <% if @voters.include?(current_user.id) %>
-        <div class="question-up-vote">
-          <img src="http://i.imgur.com/nFn8U6a.png" class='up-arrow'>
-        </div>
-        <div class='question-vote-count'><%=@question.vote_count%></div>
-        <div class="question-down-vote">
-          <img src="http://www.clker.com/cliparts/d/A/H/R/z/3/red-down-arrow-hi.png" class='down-arrow'>
-        </div>
+      <% if @question_voters.include?(current_user.id) %>
+        <%= render partial: 'questions/voted', locals: {question: @question}%>
       <% else %>
-        <div class="question-up-vote">
-          <%= link_to image_tag("http://i.imgur.com/nFn8U6a.png", class: 'up-arrow'), question_votes_path(@question) %>
-        </div>
-        <div class='question-vote-count'><%=@question.vote_count%></div>
-        <div class="question-down-vote">
-          <%= link_to image_tag("http://www.clker.com/cliparts/d/A/H/R/z/3/red-down-arrow-hi.png", class: 'down-arrow'), question_votes_path(@question) %>
-        </div>
+        <%= render partial: 'questions/unvoted', locals: {question: @question}%>
       <% end %>
     </div>
     <h1><%= @question.title %></h1>
@@ -39,12 +27,12 @@
 
 <div class="answer-data">
   <h1>Answers</h1>
-  Sort: <%= link_to 'Highest-Voted Answers', question_path(@question, {aorder: :highest}) %> |\
+  Sort: <%= link_to 'Highest-Voted Answers', question_path(@question, {aorder: :highest}) %> |
   <%= link_to 'Most Recent Answers', question_path(@question, {aorder: :recent}) %> |
   <%= link_to 'Trending Answers', question_path(@question, {aorder: :trending}) %>
     <ul>
       <%@answers.each do |answer| %>
-        <%= render partial: 'answers/answer', locals: {answer: answer, answer_comments: @answer_comments} %>
+        <%= render partial: 'answers/answer', locals: {answer: answer, answer_comments: @answer_comments, question: @question} %>
         <li class="comment-here"><%=link_to 'comment on this answer', new_answer_comment_path(answer)%></li>
       <% end %>
     </ul>
